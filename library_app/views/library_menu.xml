@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- Library App Menu -->
+    <menuitem id="menu_library" name="Library" />
+    <!-- Action to open the Book list -->
+    <act_window id="action_library_book"
+        name="Library Books"
+        res_model="library.book"
+        view_mode="tree,form"
+    />
+    <!-- Menu item to open the Book list -->
+    <menuitem id="menu_library_book"
+        name="Book"
+        parent="menu_library"
+        action="action_library_book"
+    />
+</odoo>
