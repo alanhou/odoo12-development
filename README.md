@@ -1,6 +1,8 @@
 # odoo12-development
 Odoo 12 Development Essentials - Fourth Edition Learning Code
 
+![Odoo 12后台界面](http://upload-images.jianshu.io/upload_images/14565748-2fa442df00b99829.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 第一章 [使用开发者模式快速入门 Odoo 12](https://alanhou.org/developer-mode-odoo12/)
 
 *初稿完成时间：2018年12月30日深夜（今天上海下雪了❄️❄️❄️☃️，显然地上并无积雪）*
@@ -61,4 +63,4 @@ Odoo 12 Development Essentials - Fourth Edition Learning Code
 
 [CentOS 7快速安装配置 Odoo 12](https://alanhou.org/centos-odoo-12/)
 
-[Ubuntu 快速安装配置Odoo 12](http://Ubuntu 快速安装配置Odoo 12)
+[Ubuntu 快速安装配置Odoo 12](https://alanhou.org/odoo-12/)
