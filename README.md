@@ -17,19 +17,19 @@ Odoo 12 Development Essentials - Fourth Edition Learning Code
 
 第四章 [Odoo 12 开发之模块继承](https://alanhou.org/odoo12-extending-modules/)
 
-*即将开始*
+*初稿完成时间：2019年1月8日凌晨*
 
 第五章 [Odoo 12开发之导入、导出以及模块数据](https://alanhou.org/odoo12-import-export-data/)
 
-*尚未开始*
+*初稿完成时间：2019年1月9日*
 
 第六章 [Odoo 12开发之模型 - 结构化应用数据](https://alanhou.org/odoo12-structuring-data/)
 
-*尚未开始*
+*初稿完成时间：2019年1月11日*
 
 第七章 [Odoo 12开发之记录集 - 使用模型数据](https://alanhou.org/odoo12-recordsets/)
 
-*尚未开始*
+*正在更新中...*
 
 第八章 [Odoo 12开发之业务逻辑 - 业务流程的支持](https://alanhou.org/odoo12-business-logic/)
 
