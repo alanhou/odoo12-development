@@ -29,11 +29,11 @@ Odoo 12 Development Essentials - Fourth Edition Learning Code
 
 第七章 [Odoo 12开发之记录集 - 使用模型数据](https://alanhou.org/odoo12-recordsets/)
 
-*正在更新中...*
+*初稿完成时间：2019年1月12日（行程过半了，但真正挑战才刚刚开始）*
 
 第八章 [Odoo 12开发之业务逻辑 - 业务流程的支持](https://alanhou.org/odoo12-business-logic/)
 
-*尚未开始*
+*初稿完成时间：2019年1月14日凌晨*
 
 第九章 [Odoo 12开发之外部 API - 集成第三方系统](https://alanhou.org/odoo12-external-api/)
 
