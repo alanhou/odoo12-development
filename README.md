@@ -45,11 +45,11 @@ Odoo 12 Development Essentials - Fourth Edition Learning Code
 
 第十一章 [Odoo 12开发之看板视图和用户端 QWeb](https://alanhou.org/odoo12-kanban-qweb/)
 
-*即将开始*
+*初稿完成时间：2019年1月19日*
 
 第十二章 [Odoo 12开发之报表和服务端 QWeb](https://alanhou.org/odoo12-reports-qweb/)
 
-*尚未开始*
+*即将开始*
 
 第十三章 [Odoo 12开发之创建网站前端功能](https://alanhou.org/odoo12-frontend/)
 
