@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_form_checkout_message" model="ir.ui.view">
+        <field name="name">Library Checkout Mass Message Wizard</field>
+        <field name="model">library.checkout.massmessage</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="message_subject" />
+                    <field name="message_body" />
+                    <field name="checkout_ids" />
+                </group>
+                <footer>
+                    <button type="object"
+                        name="button_send"
+                        string="Send Message" />
+                    <button special="cancel"
+                        string="Cancel"
+                        class="btn-secondary" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_checkout_message"
+        name="Send Messages"
+        src_model="library.checkout"
+        res_model="library.checkout.massmessage"
+        view_type="form"
+        view_mode="form"
+        target="new"
+        multi="True"
+        />
+</odoo>

@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<odoo>
+    <act_window id="action_other_checkouts_button"
+        name="Open Other Checkouts"
+        res_model="library.checkout"
+        view_mode="tree,form"
+        domain="[('member_id', '=', default_member_id),
+            ('state', 'in', ['open']),
+            ('id', '!=', active_id)]"/>
+
+    <record id="view_tree_checkout" model="ir.ui.view">
+        <field name="name">Checkout Tree</field>
+        <field name="model">library.checkout</field>
+        <field name="arch" type="xml">
+            <tree
+                decoration-muted="state in ['done', 'cancel']"
+                decoration-bf="state=='open'">
+                <field name="state" invisible="True" />
+                <field name="request_date" />
+                <field name="member_id" />
+                <field name="checkout_date" />
+                <field name="stage_id" />
+                <field name="num_books" sum="# Books" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_form_checkout" model="ir.ui.view">
+        <!--field name="name">Checkout Form</field-->
+        <field name="model">library.checkout</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <!--field name="state" widget="statusbar" clickable="True" /-->
+                    <field name="state" invisible="True" />
+                    <button name="button_done"
+                        type="object"
+                        string="Return Books"
+                        states="open,cancel"
+                        class="oe_highlight" />
+                    <!--attrs="{'invisible': [('state', 'in', ['new', 'done'])]}"-->
+                    <field name="stage_id"
+                        widget="statusbar"
+                        clickable="True"
+                        options="{'fold_field': 'fold'}" />
+                    <!--field name="state"
+                        widget="statusbar"
+                        clickable="True"
+                        statusbar_visible="draft,open,done" /-->
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+                        <button class="oe_stat_button"
+                            icon="fa-tasks"
+                            help="Other checkouts pending return."
+                            type="action"
+                            name="%(action_other_checkouts_button)d"
+                            context="{'default_member_id': member_id}">
+                            <field string="To Return"
+                                name="num_other_checkouts"
+                                widget="statinfo" />
+                        </button>
+                    </div>
+                    <field name="kanban_state" widget="state_selection" />
+                    <field name="member_image" widget="image" class="oe_avatar" />
+                    <div class="oe_title">
+                        <label for="member_id" class="oe_edit_only" />
+                        <h1>
+                            <field name="member_id" />
+                            <field name="priority" widget="priority" />
+                        </h1>
+                        <h3>
+                            <span class="oe_read_only">By </span>
+                            <label for="user_id" class="oe_edit_only" />
+                            <field name="user_id" class="oe_inline" />
+                        </h3>
+                    </div>
+                    <group name="group_top">
+                        <group name="group_col1">
+                            <field name="user_id" />
+                            <field name="checkout_date" />
+                        </group>
+                        <group name="group_col2">
+                            <field name="state" />
+                            <field name="closed_date" />
+                        </group>
+                    </group>
+                    <!--group>
+                        <field name="member_id" />
+                        <field name="request_date" />
+                        <field name="checkout_date" />
+                        <field name="user_id" />
+                        <field name="stage_id" />
+                    </group-->
+                    <!--group name="group_top">
+                        <group name="group_col1"
+                            col="6"
+                            colspan="4"
+                            string="Group 1">
+                            <field name="user_id" />
+                            <field name="state" />
+                            <field name="checkout_date" />
+                            <field name="closed_date" />
+                        </group>
+                        <group name="group_col2" string="Group2" />
+                    </group-->
+                    <notebook>
+                        <page string="Borrowed Books" name="page_lines">
+                            <field name="line_ids">
+                                <tree>
+                                    <field name="book_id" />
+                                </tree>
+                                <!--form>
+                                    <field name="book_id" />
+                                </form-->
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_filter_checkout" model="ir.ui.view">
+        <field name="model">library.checkout</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="member_id" />
+                <field name="user_id" />
+                <filter name="filter_not_done"
+                    string="To Return"
+                    domain="[('state','=','open')]" />
+                <filter name="filter_my_checkouts"
+                    string="My Checkouts"
+                    domain="['user_id', '=', uid]" />
+                <filter name="group_user"
+                    string="By Member"
+                    context="{'group_by': 'member_id'}" />
+            </search>
+        </field>
+    </record>
+    <record id="view_calendar_checkout" model="ir.ui.view">
+        <field name="model">library.checkout</field>
+        <field name="arch" type="xml">
+            <calendar date_start="request_date"
+                color="user_id">
+                <field name="member_id" />
+                <field name="stage_id" />
+            </calendar>
+        </field>
+    </record>
+    <record id="view_pivot_checkout" model="ir.ui.view">
+        <field name="model">library.checkout</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="stage_id" type="col" />
+                <field name="member_id" />
+                <field name="request_date" interval="week" />
+                <field name="num_books" type="measure" />
+            </pivot>
+        </field>
+    </record>
+    <record id="view_graph_checkout" model="ir.ui.view">
+        <field name="model">library.checkout</field>
+        <field name="arch" type="xml">
+            <graph type="bar">
+                <field name="stage_id" />
+                <field name="num_books" type="measure" />
+            </graph>
+        </field>
+    </record>
+</odoo>
+
+

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<odoo noupdate="1">
+    <!-- Data to load -->
+    <record model="res.partner" id="res_partner_huxley">
+        <field name="name">Aldous Huxley</field>
+    </record>
+    <record model="library.book" id="library_book_bnw">
+        <field name="name">Brave New World</field>
+        <field name="author_ids"
+                eval="[(4, ref('res_partner_huxley'))]" />
+        <field name="date_published">1932-01-01</field>
+    </record>
+</odoo>

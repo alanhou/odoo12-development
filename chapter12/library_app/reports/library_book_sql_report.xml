@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<odoo>
+    <report id="action_library_book_sql_report"
+        string="Library Book SQL Report"
+        model="library.book.report"
+        report_type="qweb-html"
+        name="library_app.report_library_book_sql" />
+    
+    <template id="report_library_book_sql">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <!-- Report page content -->
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Title</th>
+                            <th>Published</th>
+                            <th>Date</th>
+                        </tr>
+                        <t t-foreach="docs" t-as="o">
+                            <tr>
+                                <td class="col-xs-6">
+                                    <span t-field="o.name" />
+                                </td>
+                                <td class="col-xs-3">
+                                    <span t-field="o.publisher_id" />
+                                </td>
+                                <td class="col-xs-3">
+                                    <span t-field="o.date_published"
+                                        t-options="{'widget': 'date'}" />
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
