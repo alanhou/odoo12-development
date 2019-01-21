@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_form_member" model="ir.ui.view">
+        <field name="name">Member Form</field>
+        <field name="model">library.member</field>
+        <field name="inherit_id" ref="library_member.view_form_member" />
+        <field name="arch" type="xml">
+            <field name="card_number" position="after">
+                <field name="user_id" />
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="library_checkout_kanban" model="ir.ui.view">
+        <field name="model">library.checkout</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="stage_id" class="o_kanban_small_column">
+                <!-- Fields -->
+                <field name="stage_id" />
+                <field name="id" />
+                <field name="color" />
+                <field name="kanban_state" />
+                <field name="priority" />
+                <field name="message_partner_ids" />
+
+                <!-- Optional progress bar -->
+                <progressbar
+                    field="kanban_state"
+                    colors='{"done": "success", "blocked": "danger"}' />
+                <!-- Templates with HTML snippets to use -->
+                <templates>
+                    <t t-name="kanban-box">
+                        <!-- Set the Kanban Card color -->
+                        <div t-attf-class="
+                            oe_kanban_color_#{kanban_getcolor(record.color.raw_value)}
+                            oe_kanban_global_click">
+                            <div class="o_dropdown_kanban dropdown">
+                                <a class="dropdown-toggle btn"
+                                    data-toggle="dropdown" role="button"
+                                    aria-label="Dropdown menu"
+                                    title="Dropdown menu"
+                                    href="#">
+                                    <span class="fa fa-ellipsis-v" />
+                                </a>
+                                <div class="dropdown-menu" role="menu">
+                                    <!-- Edit and Delete actions, if available: -->
+                                    <t t-if="widget.editable">
+                                        <a role="menuitem" type="edit" class="dropdown-item">Edit</a>
+                                    </t>
+                                    <t t-if="widget.deletable">
+                                        <a role="menuitem" type="delete" class="dropdown-item">Delete</a>
+                                    </t>
+                                    <!-- Color picker option -->
+                                    <ul class="oe_kanban_colorpicker" data-field="color" />
+                                </div>
+                            </div>
+                            <div class="oe_kanban_body">
+                                <div>
+                                    <strong>
+                                        <a type="open"><field name="member_id" /></a>
+                                    </strong>
+                                </div>
+                                <ul>
+                                    <li t-attf-class="oe_kanban_text_{{
+                                        record.priority.raw_value lt '2'
+                                        ? 'black' : 'red'}}">
+                                        <field name="user_id" />
+                                    </li>
+                                    <!--t t-set="red_or_black"
+                                        t-value="record.priority.raw_value gte '2' ? 'oe_kanban_text_red' :''" />
+                                    <li t-att-class="red_or_black">
+                                        <field name="user_id" />
+                                    </li-->
+                                    <li><field name="request_date" /></li>
+                                    <t t-if="record.num_books.raw_value == 0">
+                                        <li>No books.</li>
+                                    </t>
+                                    <t t-elif="record.num_books.raw_value gt 9">
+                                        <li>A lot of books!</li>
+                                    </t>
+                                    <t t-else="">
+                                        <li><field name="num_books" /> books.</li>
+                                    </t>
+                                </ul>
+                                <!--t t-esc="record.message_partner_ids.raw_value" /-->
+                            </div>
+                            <div class="o_kanban_record_bottom">
+                                <div class="oe_kanban_bottom_left">
+                                    <field name="priority" widget="priority" />
+                                    <field name="activity_ids" widget="kanban_activity" />
+                                    <t t-set="calendar_sign">
+                                        <i class="fa fa-calendar" />
+                                    </t>
+                                    <t t-raw="calendar_sign" />
+                                </div>
+                                <div class="oe_kanban_bottom_right">
+                                    <field name="kanban_state"
+                                        widget="kanban_state_selection" />
+                                    <img t-att-src="kanban_image(
+                                            'library.checkout',
+                                            'member_image',
+                                            record.id.raw_value)" 
+                                        t-att-title="record.member_id.value"
+                                        t-att-alt="record.member_id.value"
+                                        width="24"
+                                        height="24"
+                                        class="oe_kanban_avatar"
+                                    />
+                                    <!--t t-foreach="record.message_partner_ids.raw_value.slice(0,3)" t-as="rec">
+                                        <img t-att-src="kanban_image('res.partner', 'image_small', rec)"
+                                            class="oe_avatar" width="24" height="24" alt="" />
+                                    </t-->
+                                    <t t-call="follower_avatars">
+                                        <t t-set="arg_max" t-value="3" />
+                                        <!--t t-raw="0" /-->
+                                    </t>
+                                </div>
+                            </div>
+                            <div class="oe_clear" />
+                        </div>
+                    </t>
+                    <t t-name="follower_avatars">
+                        <div>
+                            <t t-foreach="record.message_partner_ids.raw_value.slice(0, arg_max)"
+                                t-as="rec">
+                                <img t-att-src="kanban_image('res.partner', 'image_small', rec)"
+                                    class="oe_avatar" width="24" height="24" alt="" />
+                            </t>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="paperformat_euro_landscape"
+        model="report.paperformat">
+        <field name="name">European A4 Landscape</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">23</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+    <report id="action_library_book_report"
+        string="Library Books"
+        model="library.book"
+        report_type="qweb-pdf"
+        name="library_app.report_library_book_template"
+        paperformat="paperformat_euro_landscape" />
+        <!--name="library_app.report_library_book_translated"
+        paperformat="paperformat_euro_landscape" /-->
+    <template id="report_library_book_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <!-- Report header content -->
+                    <div class="container">
+                        <div class="row bg-primary">
+                            <div class="col-3">Title</div>
+                            <div class="col-2">Publisher</div>
+                            <div class="col-2">Date</div>
+                            <div class="col-3">Publisher Address</div>
+                            <div class="col-2">Authors</div>
+                        </div>
+                        <!-- Running total: initialize variable -->
+                        <t t-set="author_count" t-value="0" />
+                        <t t-foreach="docs" t-as="o">
+                            <div class="row">
+                                <!-- Report row content -->
+                                <div class="col-3">
+                                    <h4><span t-field="o.name" /></h4>
+                                    <!-- Running total: increment and present -->
+                                    <t t-set="author_count" t-value="author_count + len(o.author_ids)" />
+                                    (Accum. authors: <t t-esc="author_count" />)
+                                </div>
+                                <div class="col-2">
+                                    <span t-field="o.publisher_id" />
+                                </div>
+                                 <div class="col-2">
+                                    <span t-field="o.date_published"
+                                        t-options="{'widget': 'date'}"/>
+                                </div>
+                                <div class="col-3">
+                                    <span t-field="o.publisher_id"
+                                        t-options='{
+                                            "widget": "contact",
+                                            "fields": ["address", "email", "phone", "website"],
+                                            "no_marker": true}'/>
+                                </div>
+                                <div class="col-2">
+                                    <!-- Render authors -->
+                                    <ul class="list-unstyled">
+                                        <t t-foreach="o.author_ids" t-as="author">
+                                            <li class="media">
+                                                <span t-field="author.image_small"
+                                                    t-options="{'widget': 'image'}" />
+                                                <div class="media-body">
+                                                    <p class="mt-0">
+                                                        <span t-field="author.name" />
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        </t>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                         <!-- Report footer content -->
+                         <div class="row">
+                            <div class="col-3">
+                                Count: <t t-esc="len(docs)" />
+                            </div>
+                            <div class="col-2" />
+                            <div class="col-2" />
+                            <div class="col-3" />
+                            <div class="col-2" />
+                         </div>
+                    </div>       
+                </div>
+            </t>
+        </t>
+    </template>
+    <template id="report_library_book_translated">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="library_app.report_library_book_template"
+                t-lang="o.publisher_id.lang">
+                <t t-set="docs" t-value="o" />
+            </t>
+        </t>
+    </template>
+    <!-- Document Report -->
+    <!--template id="report_todo_task_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page"-->
+                        <!-- Report content -->
+                    <!--/div>
+                </t>
+            </t>
+        </t>
+    </template-->    
+</odoo>

@@ -1,0 +1,3 @@
+"id","name","date_published","publisher_id/id","author_ids/id"
+library_book_ode11,"Odoo Development Essentials 11","2018-03-01",res_partner_packt,res_partner_daniel
+library_book_odc11,"Odoo 11 Development Cookbook","2018-01-01",res_partner_packt,"res_partner_alexandre,res_partner_holger"

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<odoo>
+    <template id="index" name="Checkout List">
+        <t t-call="website.layout">
+            <div id="wrap" class="container">
+                <h1>Checkouts</h1>
+
+                <!-- List of Checkouts -->
+                <t t-foreach="docs" t-as="doc">
+                    <div class="row">
+                        <input type="checkbox" disabled="True"
+                            t-att-checked="'checked' if doc.stage_id.fold else None" />
+                        <a t-attf-href="/checkout/{{slug(doc)}}">
+                            <h3 t-field="doc.request_date"
+                                t-att-class="'text-strikeout' if doc.stage_id.fold else ''" />
+                        </a>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+    <template id="checkout" name="Checkout Form">
+        <t t-call="website.layout">
+            <div id="wrap" class="container">
+                <h1 t-field="doc.request_date" />
+                <h5>Member: <span t-field="doc.member_id" /></h5>
+                <h5>Stage: <span t-field="doc.stage_id" /></h5>
+            </div>
+        </t>
+    </template>
+</odoo>

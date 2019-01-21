@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_form_book" model="ir.ui.view">
+        <field name="name">Book Form</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <form string="Book">
+                <header>
+                    <button name="button_check_isbn" type="object"
+                        string="Check ISBN" />
+                </header>
+                <sheet>
+                    <group name="group_top">
+                        <group name="group_left">
+                            <field name="name" />
+                            <field name="author_ids" widget="many2many_tags" />
+                            <field name="publisher_id" />
+                            <field name="date_published" />
+                        </group>
+                        <group name="group_right">
+                            <field name="isbn" />
+                            <field name="active" />
+                            <field name="image" widget="image" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_tree_book" model="ir.ui.view">
+        <field name="name">Book List</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="author_ids" widget="many2many_tags" />
+                <field name="publisher_id" />
+                <field name="date_published" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_search_book" model="ir.ui.view">
+        <field name="name">Book Filters</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="publisher_id" />
+                <filter name="filter_active"
+                    string="Active"
+                    domain="[('active','=',True)]" />
+               <filter name="filter_inactive"
+                    string="Inactive"
+                    domain="[('active','=',False)]" />
+            </search>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_book_portal,Book Portal Access,library_app.model_library_book,base.group_portal,1,0,0,0
+access_member_portal,Member Portal Access,library_member.model_library_member,base.group_portal,1,0,0,0
+access_checkout_portal,Checkout Portal Access,library_checkout.model_library_checkout,base.group_portal,1,0,0,0

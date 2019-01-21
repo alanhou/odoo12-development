@@ -49,15 +49,15 @@ Odoo 12 Development Essentials - Fourth Edition Learning Code
 
 第十二章 [Odoo 12开发之报表和服务端 QWeb](https://alanhou.org/odoo12-reports-qweb/)
 
-*即将开始*
+*初稿完成时间：2019年1月20日*
 
 第十三章 [Odoo 12开发之创建网站前端功能](https://alanhou.org/odoo12-frontend/)
 
-*尚未开始*
+*初稿完成时间：2019年1月21日*
 
 第十四章 [Odoo 12开发之部署和维护生产实例](https://alanhou.org/odoo12-deployment/)
 
-*尚未开始*
+*即将开始*
 
 其它：
 

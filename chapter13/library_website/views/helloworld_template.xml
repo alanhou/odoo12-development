@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<odoo>
+    <template id="helloworld" name="Hello World Template">
+        <t t-call="website.layout">
+            <h1>Hello World!</h1>
+        </t>
+    </template>
+</odoo>
