@@ -57,7 +57,7 @@ Odoo 12 Development Essentials - Fourth Edition Learning Code
 
 第十四章 [Odoo 12开发之部署和维护生产实例](https://alanhou.org/odoo12-deployment/)
 
-*即将开始*
+*初稿完成时间：2019年1月23日*
 
 其它：
 
