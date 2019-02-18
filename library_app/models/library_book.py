@@ -29,7 +29,7 @@ class Book(models.Model):
     def button_check_isbn(self):
         for book in self:
             if not book.isbn:
-                raise Warningg('Please provide an ISBN for %s' % book.name)
+                raise Warning('Please provide an ISBN for %s' % book.name)
             if book.isbn and not book._check_isbn():
                 raise Warning('%s is an invalid ISBN' % book.isbn)
             return True
