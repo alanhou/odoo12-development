@@ -23,12 +23,12 @@
         <field name="name">Library Member List View</field>
         <field name="model">library.member</field>
         <field name="arch" type="xml">
-            <form>
+            <tree>
                 <group>
                     <field name="name" />
                     <field name="card_number" />
                 </group>
-            </form>
+            </tree>
         </field>
     </record>
 </odoo>
