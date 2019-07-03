@@ -90,7 +90,7 @@ class Checkout(models.Model):
             if new_state == 'open' and self.state != 'open':
                 vals['checkout_date'] = fields.Date.today()
             if new_state == 'done' and self.state != 'done':
-                vals['close_date'] = fields.Date.today()
+                vals['closed_date'] = fields.Date.today()
         super().write(vals)
         # Code after write: can use `self`, with the updated values
         return True
