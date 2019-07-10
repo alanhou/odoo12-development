@@ -23,11 +23,9 @@
         <field name="name">Library Member List View</field>
         <field name="model">library.member</field>
         <field name="arch" type="xml">
-            <form>
-                <group>
-                    <field name="name" />
-                    <field name="card_number" />
-                </group>
+            <tree>
+                <field name="name" />
+                <field name="card_number" />
             </form>
         </field>
     </record>
