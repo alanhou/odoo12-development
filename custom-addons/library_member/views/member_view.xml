@@ -24,10 +24,8 @@
         <field name="model">library.member</field>
         <field name="arch" type="xml">
             <tree>
-                <group>
-                    <field name="name" />
-                    <field name="card_number" />
-                </group>
+                <field name="name" />
+                <field name="card_number" />
             </tree>
         </field>
     </record>
